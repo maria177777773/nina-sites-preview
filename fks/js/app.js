@@ -32,6 +32,10 @@
     if (id && document.getElementById(id)) { ev.preventDefault(); menu(false); go(id); history.replaceState(null, '', '#' + id); }
   });
   $$('[data-more]').forEach(function (b) { b.dataset.label = b.textContent; });
+  // «Вы получите»: варианты А/Б/В (переключатель только в макете)
+  $$('[data-bv]').forEach(function (b) { b.addEventListener('click', function () {
+    $$('[data-bv]').forEach(function (x) { x.classList.toggle('on', x === b); });
+    $$('[data-bvar]').forEach(function (v) { v.hidden = v.dataset.bvar !== b.dataset.bv; }); }); });
   $$('form[data-form]').forEach(function (fm) { fm.addEventListener('submit', function (e) { e.preventDefault(); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu(false); });
 

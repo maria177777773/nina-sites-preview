@@ -302,3 +302,46 @@ body.old main,body.old .hdr,body.old .ftr{visibility:hidden}
   .ftr-in{grid-template-columns:1fr}
   .prow{grid-template-areas:"k k" "t t" "h p"}
 }
+
+/* ─── 29.10 после критика-маркетолога ─── */
+.h-price{font-weight:700;color:var(--ink)}
+.h2-left .h-price{color:#fff}
+.strip{padding-block:40px 0}
+.strip-t{font-size:var(--t-h3);font-weight:800;color:var(--ink);text-align:center}
+.hero-gold .h-text{background:var(--blue);border-radius:20px;padding:48px 40px}
+.hero-gold .h-text h1,.hero-gold .h-text .lead,.hero-gold .h-text .h-price,.hero-gold .mini-facts,.hero-gold .mini-facts b{color:var(--on)}
+.hero-gold .h-text .btn-p{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero-gold .h-text .btn-o{background:transparent;border-color:var(--ink);color:var(--ink)}
+.bv-sw{display:flex;justify-content:center;gap:6px;margin-bottom:24px}
+.bv-sw button{height:var(--vp-h);min-width:var(--vp-h);padding:0 14px;border-radius:10px;border:1.5px dashed var(--muted);background:#fff;font:700 var(--t-small)/1 var(--font);color:var(--muted);cursor:pointer}
+.bv-sw button.on{border-style:solid;border-color:var(--ink);background:var(--ink);color:#fff}
+.incs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.inc{background:#fff;border-radius:var(--r);padding:28px;display:grid;gap:12px;align-content:start}
+.sec:not(.sec-gray) .inc{border:1px solid var(--line)}
+.inc-t{font-size:var(--t-h3);font-weight:800;color:var(--ink)}
+.inc-p{font-size:var(--t-num);line-height:1.1;font-weight:800;color:var(--blue-t)}
+.inc-s{font-weight:700;color:var(--ink)}
+.day{list-style:none;padding:0;margin:0 auto;max-width:760px;display:grid;gap:0}
+.day li{display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:baseline;padding:18px 0;border-top:1px solid var(--line)}
+.day li:last-child{border-bottom:1px solid var(--line)}
+.day b{font-size:var(--t-h3);color:var(--blue-t)}
+.day span{font-size:var(--t-h3);color:var(--ink)}
+.gcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.gc{display:grid;gap:12px;align-content:start}
+.gc .ph{border-radius:20px}
+.gc figcaption{display:grid;gap:4px}
+.gc figcaption b{font-size:var(--t-h3);color:var(--ink)}
+.gc figcaption span{color:var(--muted)}
+.promise{display:grid;gap:8px;margin-bottom:8px}
+.promise li{font-size:var(--t-h3);font-weight:800;color:var(--ink);padding-left:32px;position:relative}
+.promise li::before{content:"";position:absolute;left:2px;top:.4em;width:16px;height:9px;border-left:3px solid var(--blue-t);border-bottom:3px solid var(--blue-t);transform:rotate(-45deg)}
+#sf1 .sf-price{font-size:var(--t-body);font-weight:800;color:var(--ink)}
+.more-m{display:none}
+@media (max-width:1000px){.incs,.gcs{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){
+  .incs,.gcs{grid-template-columns:1fr}
+  .hero-gold .h-text{padding:28px 20px}
+  .more-m{display:flex}
+  .wrap:not(.show-all) .llist .lr:nth-child(n+5),.wrap:not(.show-all) .rgrid .rv:nth-child(n+4){display:none}
+  .day li{grid-template-columns:72px 1fr;gap:16px}
+}
