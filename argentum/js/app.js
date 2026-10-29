@@ -32,11 +32,42 @@
     if (id && document.getElementById(id)) { ev.preventDefault(); menu(false); go(id); history.replaceState(null, '', '#' + id); }
   });
   $$('[data-more]').forEach(function (b) { b.dataset.label = b.textContent; });
-  // «Вы получите»: варианты А/Б/В (переключатель только в макете)
-  $$('[data-bv]').forEach(function (b) { b.addEventListener('click', function () {
-    $$('[data-bv]').forEach(function (x) { x.classList.toggle('on', x === b); });
-    $$('[data-bvar]').forEach(function (v) { v.hidden = v.dataset.bvar !== b.dataset.bv; }); }); });
-  $$('form[data-form]').forEach(function (fm) { fm.addEventListener('submit', function (e) { e.preventDefault(); }); });
+
+  // телефон: маска +7 (___) ___-__-__ и проверка (правило Маши 29.10: без маски и проверки форма с дефектом)
+  function digits(v) { var d = (v || '').replace(/\D/g, ''); if (d[0] === '7' || d[0] === '8') d = d.slice(1); return d.slice(0, 10); }
+  function fmt(d) {
+    var o = '+7 (' + d.slice(0, 3);
+    if (d.length >= 3) o += ') ' + d.slice(3, 6);
+    if (d.length >= 6) o += '-' + d.slice(6, 8);
+    if (d.length >= 8) o += '-' + d.slice(8, 10);
+    return d.length ? o : '';
+  }
+  function phoneOk(d) { return d.length === 10 && !/^(\d)\1+$/.test(d) && /^[3489]/.test(d) && !/^(333|444|888)/.test(d); }
+  $$('input[data-phone]').forEach(function (inp) {
+    inp.addEventListener('input', function () { inp.value = fmt(digits(inp.value)); inp.classList.remove('err'); inp.removeAttribute('aria-invalid'); });
+    inp.addEventListener('focus', function () { if (!inp.value) inp.value = '+7 ('; });
+    inp.addEventListener('blur', function () { if (inp.value === '+7 (') inp.value = ''; });
+  });
+  $$('form[data-form]').forEach(function (fm) {
+    fm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = fm.querySelector('[data-fmsg]'), bad = false;
+      $$('input[data-phone]', fm).forEach(function (inp) {
+        if (!phoneOk(digits(inp.value))) { bad = true; inp.classList.add('err'); inp.setAttribute('aria-invalid', 'true'); inp.focus(); }
+      });
+      fm.dataset.state = bad ? 'bad' : 'ok';
+      if (msg) { msg.classList.toggle('bad', bad); msg.textContent = bad ? 'Проверьте номер: нужен мобильный или городской, 10 цифр после +7' : 'Спасибо! Перезвоним в течение 15 минут'; }
+    });
+  });
+  // слайдер первого экрана: сам каждые 5 с, точки снизу, пауза при наведении и фокусе
+  $$('[data-slider]').forEach(function (sl) {
+    var items = $$('[data-sl]', sl), dots = $$('[data-sl-go]', sl), i = 0, paused = false;
+    function show(n) { i = (n + items.length) % items.length; items.forEach(function (x, k) { x.classList.toggle('on', k === i); }); dots.forEach(function (x, k) { x.classList.toggle('on', k === i); x.setAttribute('aria-current', k === i ? 'true' : 'false'); }); }
+    dots.forEach(function (d) { d.addEventListener('click', function () { show(+d.dataset.slGo); }); });
+    ['mouseenter', 'focusin'].forEach(function (ev) { sl.addEventListener(ev, function () { paused = true; }); });
+    ['mouseleave', 'focusout'].forEach(function (ev) { sl.addEventListener(ev, function () { paused = false; }); });
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function () { if (!paused && !document.hidden) show(i + 1); }, 5000);
+  });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu(false); });
 
   // подсветка текущего раздела в меню
