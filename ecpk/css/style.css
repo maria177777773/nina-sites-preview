@@ -5,13 +5,13 @@
   --blue-t:var(--blue);--on:#fff;--font:Inter,Arial,sans-serif;
   --hdr-bg:var(--blue);--hdr-ink:#fff;--hdr-line:rgba(255,255,255,.45);--hdr-cta:#fff;--hdr-cta-ink:var(--blue);--hdr-cta-h:var(--blue-100);
   --t-h1:54px;--t-h2:40px;--t-h3:22px;--t-lead:21px;--t-body:18px;--t-small:16px;--t-num:46px;--t-cap:14px;
-  --t-form:20px;--t-hero:64px;--t-tel:30px;
+  --t-form:20px;--t-hero:64px;--t-tel:30px;--t-sub:28px;
   --btn-h:58px;--btn-s:52px;--vp-h:44px;--r:16px;--wrap:1300px;--gut:32px;--sec:104px;--hdr-h:84px;
   color-scheme:light;
 }
 @media (max-width:700px){:root{
   --t-h1:34px;--t-h2:28px;--t-h3:20px;--t-lead:18px;--t-body:16px;--t-small:16px;--t-num:34px;--t-cap:13px;
-  --t-hero:34px;--t-tel:28px;
+  --t-hero:34px;--t-tel:28px;--t-sub:22px;
   --btn-h:54px;--btn-s:52px;--gut:16px;--sec:64px;--hdr-h:68px;
 }}
 *{box-sizing:border-box}
@@ -443,3 +443,40 @@ input.err{border-color:#b45309;outline:2px solid #fde68a}
 @media (max-width:1240px) and (min-width:1001px){.hero-gold h1{font-size:44px}}
 .more-wrap{display:flex;justify-content:center;margin-top:40px}
 .more-wrap[hidden]{display:none}
+
+/* ─── 29.10, третий заход правок Маши ─── */
+.btn-p{background:var(--btnp-bg,var(--blue));border-color:var(--btnp-bg,var(--blue));color:var(--btnp-tx,var(--on))}
+.btn-p:hover{background:var(--btnp-h,var(--blue-d));border-color:var(--btnp-h,var(--blue-d))}
+#raspisanie #sf1 .sf-btn-p{background:var(--btnp-bg,var(--blue));border-color:var(--btnp-bg,var(--blue));color:var(--btnp-tx,var(--sf-on))}
+#raspisanie #sf1 .sf-btn-p:hover{background:var(--btnp-h,var(--blue-d));border-color:var(--btnp-h,var(--blue-d))}
+/* контакты: карточки по высоте содержимого, вровень по центру, кнопка сразу под полями */
+.cont{align-items:center}
+.cform .ff{grid-template-columns:1fr}
+.cform .card-foot{margin-top:0;padding-top:0}
+.cform .btn{width:auto;justify-self:start;padding:0 40px}
+/* ФКС: синяя полоса с живым фото справа */
+.hb-in{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:56px}
+.hb-t{display:grid;gap:28px;justify-items:start}
+.hb-ph{border-radius:20px;overflow:hidden;margin:0}
+.hb-ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.hb h1{font-size:var(--t-h1)}
+@media (max-width:1000px){.hb-in{grid-template-columns:1fr}}
+/* ЕЦПК: фото зала на весь экран с затемнением */
+.hp{position:relative;margin-top:-48px;min-height:600px;display:flex;align-items:center;color:#fff;overflow:hidden;background:#1d1b16}
+.hp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hp::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,16,12,.86) 0%,rgba(18,16,12,.7) 48%,rgba(18,16,12,.25) 100%)}
+.hp-in{position:relative;z-index:1;display:grid;gap:28px;justify-items:start;padding-block:80px;width:100%}
+.hp h1{color:#fff;max-width:880px}
+.hp .lead,.hp .h-price,.hp .mini-facts,.hp .mini-facts b{color:#fff;max-width:760px}
+.hp+.wrap .near-strip,.hb+.wrap .near-strip{margin-top:32px}
+@media (max-width:700px){.hp{margin-top:-24px;min-height:0}.hp-in{padding-block:40px;justify-items:stretch}}
+/* «Вы получите»: фото-карточки, ниже текстовые */
+.gts{margin-top:32px}
+.gts .ben{border:1px solid var(--line)}
+.inc-acts{justify-content:center;margin-top:40px}
+/* расписание ЕЦПК: кружок с фото лектора у даты */
+#raspisanie #sf1 .sf-av{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+/* курсы Аргентума: группы крупно */
+.pg>h3{font-size:var(--t-sub);margin-bottom:12px}
+.sec-final{padding-bottom:36px}   /* + 104 у контактов = 140 */
+.hb-ph{justify-self:stretch;width:100%}.hb-ph img{height:auto}

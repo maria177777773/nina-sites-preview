@@ -5,7 +5,11 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var params = new URLSearchParams(location.search);
 
-  function go(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+  function go(id) {  // к заголовку блока, сразу под липкую шапку (Маша 29.10: не проскакивать выше или ниже)
+    var el = document.getElementById(id); if (!el) return;
+    var t = el.querySelector('h2') || el, hh = ($('.hdr') || { offsetHeight: 0 }).offsetHeight;
+    scrollTo({ top: t.getBoundingClientRect().top + scrollY - hh - 24, behavior: 'smooth' });
+  }
   var mnav = $('[data-mnav]'), burger = $('[data-burger]');
   function menu(open) {
     if (!mnav) return;
@@ -66,7 +70,7 @@
     dots.forEach(function (d) { d.addEventListener('click', function () { show(+d.dataset.slGo); }); });
     ['mouseenter', 'focusin'].forEach(function (ev) { sl.addEventListener(ev, function () { paused = true; }); });
     ['mouseleave', 'focusout'].forEach(function (ev) { sl.addEventListener(ev, function () { paused = false; }); });
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function () { if (!paused && !document.hidden) show(i + 1); }, 5000);
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function () { if (!paused && !document.hidden) show(i + 1); }, +(sl.dataset.interval || 3500));
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu(false); });
 
