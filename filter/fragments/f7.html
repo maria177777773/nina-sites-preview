@@ -1,0 +1,254 @@
+<!-- concept: сначала формат, потом тема | approach: первый вопрос «поеду или из дома»: сегменты Очно и Онлайн, город появляется только в «Очно» | label: Очно, онлайн -->
+<style>/* Ф-7: Очно, онлайн. Фрагмент самодостаточный: стили только внутри #sf7 */
+#sf7{--blue:#426bbd;--blue-d:#2f56a6;--blue-50:#f2f4f9;--blue-100:#e3e9f5;--ink:#121619;--text:#272c33;--muted:#59616e;--line:#dde3ee;
+ --r:16px;--ctl:48px;--btn:52px;--fs:var(--t-body,18px);--fs-s:var(--t-small,16px);--h2:var(--t-h2,40px);--h3:var(--t-h3,22px);
+ font:400 var(--fs)/1.55 Inter,Arial,sans-serif;color:var(--text);text-align:left}
+#sf7 *{box-sizing:border-box}
+#sf7 [hidden]{display:none!important}
+#sf7 h2,#sf7 h3,#sf7 p,#sf7 figure{margin:0}
+#sf7 img{display:block;max-width:100%}
+#sf7 button,#sf7 select,#sf7 input{font-family:inherit}
+#sf7 .ic{flex:none}
+#sf7 .sf-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-bottom:32px}
+#sf7 h2{font-size:var(--h2);line-height:1.15;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+#sf7 .sf-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--blue);font-weight:700;text-decoration:none}
+#sf7 .sf-link:hover{text-decoration:underline}
+#sf7 .sf-scroll{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#sf7 .sf-scroll::-webkit-scrollbar{display:none}
+#sf7 .sf-chip{height:var(--ctl);padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--text);
+ font:600 var(--fs-s)/1 Inter,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex:none}
+#sf7 .sf-chip:hover{border-color:var(--blue)}
+#sf7 .sf-chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+#sf7 .sf-chip[disabled],#sf7 .sf-tab[disabled]{opacity:.4;cursor:default}
+#sf7 .sf-chip[disabled]:hover{border-color:var(--line)}
+#sf7 .sf-n{font-weight:500;color:var(--muted)}
+#sf7 .on .sf-n{color:#fff}
+#sf7 .sf-ok{display:none}
+#sf7 .on .sf-ok{display:block}
+#sf7 .sf-pk{position:relative;display:inline-flex;align-items:center;justify-content:space-between;gap:8px;height:var(--ctl);padding:0 12px 0 16px;
+ border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--text);font:600 var(--fs-s)/1 Inter,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+#sf7 .sf-pk:hover{border-color:var(--blue)}
+#sf7 .sf-pk.on{background:var(--blue);border-color:var(--blue);color:#fff}
+#sf7 .sf-pk:focus-within{outline:3px solid var(--blue-100);outline-offset:2px}
+#sf7 .sf-pk select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0;margin:0;-webkit-appearance:none;appearance:none}
+#sf7 .sf-bar{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;min-height:var(--ctl);margin:24px 0}
+#sf7 .sf-count{font-weight:700;color:var(--ink)}
+#sf7 .sf-reset{display:inline-flex;align-items:center;gap:8px;height:var(--ctl);padding:0 16px;border-radius:12px;border:1.5px solid var(--line);
+ background:#fff;color:var(--blue);font:700 var(--fs-s)/1 Inter,Arial,sans-serif;cursor:pointer}
+#sf7 .sf-reset:hover{border-color:var(--blue)}
+#sf7 .sf-badge{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--blue);color:#fff;font-size:var(--fs-s);line-height:1}
+#sf7 .sf-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:var(--btn);padding:0 28px;border-radius:12px;
+ font:700 var(--fs)/1 Inter,Arial,sans-serif;text-decoration:none;border:2px solid var(--blue);cursor:pointer;white-space:nowrap}
+#sf7 .sf-btn-p{background:var(--blue);color:#fff}
+#sf7 .sf-btn-p:hover{background:var(--blue-d);border-color:var(--blue-d)}
+#sf7 .sf-btn-o{background:#fff;color:var(--blue)}
+#sf7 .sf-btn-o:hover{background:var(--blue-50)}
+#sf7 .sf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:28px}
+#sf7 .sf-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+#sf7 .sf-ph{overflow:hidden;background:var(--blue-50)}
+#sf7 .sf-ph img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
+#sf7 .sf-body{display:flex;flex-direction:column;gap:10px;padding:20px 24px 24px;flex:1}
+#sf7 .sf-when{display:flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;flex-wrap:wrap}
+#sf7 .sf-card h3{font-size:var(--h3);line-height:1.3;font-weight:700;color:var(--ink)}
+#sf7 .sf-st{margin-left:auto;font-size:var(--fs-s);line-height:1.3;font-weight:700;padding:4px 10px;border-radius:999px}
+#sf7 .sf-st-now{background:#e3f1e8;color:#1d6b3c}
+#sf7 .sf-st-past{background:var(--blue-50);color:var(--muted)}
+#sf7 .sf-card[data-past="1"]{opacity:.75}
+#sf7 .sf-pl,#sf7 .sf-l{display:flex;gap:8px;align-items:flex-start;font-size:var(--fs-s)}
+#sf7 .sf-pl .ic,#sf7 .sf-l .ic{color:var(--blue);margin-top:2px}
+#sf7 .sf-k{color:var(--muted);font-size:var(--fs-s)}
+#sf7 .sf-l{margin-bottom:10px}
+#sf7 .sf-card .sf-btn{margin-top:auto;align-self:flex-start}
+#sf7 .sf-empty{display:grid;gap:12px;justify-items:start;padding:32px;border:1.5px dashed var(--line);border-radius:var(--r);background:#fff}
+#sf7 .sf-empty-t{font-size:var(--h3);font-weight:700;color:var(--ink)}
+#sf7 .sf-empty a{color:var(--blue);font-weight:700;white-space:nowrap}
+#sf7 .sf-more{display:flex;justify-content:center;margin-top:40px}
+@media (max-width:700px){
+ #sf7{--fs:var(--t-body,16px);--h2:var(--t-h2,28px);--h3:var(--t-h3,20px)}
+ #sf7 .sf-head{margin-bottom:20px}
+ #sf7 .sf-body{padding:16px 16px 20px}
+ #sf7 .sf-card .sf-btn,#sf7 .sf-more .sf-btn,#sf7 .sf-empty .sf-btn{width:100%;align-self:stretch}
+ #sf7 .sf-empty{padding:20px}
+ #sf7 .sf-grid{gap:20px}
+}
+
+#sf7 .f7-seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:14px;background:var(--blue-50)}
+#sf7 .f7-s{height:var(--ctl);padding:0 28px;border-radius:10px;border:0;background:none;color:var(--ink);font:700 var(--fs)/1 Inter,Arial,sans-serif;
+ cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+#sf7 .f7-s:hover{background:#fff}
+#sf7 .f7-s.on{background:var(--blue);color:#fff}
+#sf7 .f7-s .sf-n{font-weight:500}
+#sf7 .f7-cities{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#sf7 .f7-dirs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media (max-width:700px){
+ #sf7 .f7-seg{display:grid;width:100%}
+ #sf7 .f7-s{padding:0 8px}
+ #sf7 .f7-cities,#sf7 .f7-dirs{flex-wrap:nowrap}
+}</style>
+<section class="sf" id="sf7" aria-labelledby="sf7-h">
+<div class="sf-head"><h2 id="sf7-h">Расписание семинаров</h2><a class="sf-link" href="https://center-fks.ru/raspisanie">Страница расписания<svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
+<div class="f7-seg" role="group" aria-label="Формат"><button type="button" class="f7-s" data-k="fmt" data-v="" aria-pressed="false"><span>Все</span></button><button type="button" class="f7-s" data-k="fmt" data-v="ochno" aria-pressed="false"><span>Очно</span><span class="sf-n" data-c></span></button><button type="button" class="f7-s" data-k="fmt" data-v="online" aria-pressed="false"><span>Онлайн</span><span class="sf-n" data-c></span></button></div>
+<div class="f7-cities sf-scroll" data-sf-show="fmt=ochno" role="group" aria-label="Город" hidden><button type="button" class="sf-chip" data-k="city" data-v="" aria-pressed="false"><span>Любой город</span></button><button type="button" class="sf-chip" data-k="city" data-v="Москва" aria-pressed="false"><span>Москва</span><span class="sf-n" data-c></span></button><button type="button" class="sf-chip" data-k="city" data-v="Санкт-Петербург" aria-pressed="false"><span>Санкт-Петербург</span><span class="sf-n" data-c></span></button><button type="button" class="sf-chip" data-k="city" data-v="Кисловодск" aria-pressed="false"><span>Кисловодск</span><span class="sf-n" data-c></span></button></div>
+<div class="f7-dirs sf-scroll" role="group" aria-label="Направление"><button type="button" class="sf-chip" data-k="dir" data-v="" aria-pressed="false"><span>Все темы</span></button><button type="button" class="sf-chip" data-k="dir" data-v="Закупки" aria-pressed="false"><span>Закупки</span><span class="sf-n" data-c></span></button><button type="button" class="sf-chip" data-k="dir" data-v="Гособоронзаказ" aria-pressed="false"><span>Гособоронзаказ</span><span class="sf-n" data-c></span></button><button type="button" class="sf-chip" data-k="dir" data-v="Бухгалтерия" aria-pressed="false"><span>Бухгалтерия</span><span class="sf-n" data-c></span></button><button type="button" class="sf-chip" data-k="dir" data-v="Налоги" aria-pressed="false"><span>Налоги</span><span class="sf-n" data-c></span></button></div>
+<div class="sf-bar"><p class="sf-count" data-sf-count data-tpl="Найдено: {n}" aria-live="polite">Найдено: 6 семинаров</p><button type="button" class="sf-reset" data-sf-reset hidden><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Сбросить</span></button></div>
+<div class="sf-grid">
+<article class="sf-card" data-sf-card data-city="Москва" data-month="10" data-dir="Налоги" data-lect="Джаарбеков" data-fmt="ochno" data-day="2026-10-19" data-past="1" data-q="налоговая оптимизация 2026-2027: безопасные методы, налоговые риски и практические решения практический семинар джаарбеков с.м. москва налоги москва" hidden>
+  <figure class="sf-ph"><img src="img/s-1.webp" alt="Москва" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>19-20 октября</span><span class="sf-st sf-st-past">Прошёл</span></p>
+    <h3>Налоговая оптимизация 2026-2027: безопасные методы, налоговые риски и практические решения</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Москва. Доступна запись</span></p>
+    <p class="sf-k">Практический семинар</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Джаарбеков С.М.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/19-20okt-nalogi-msk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Москва|Онлайн" data-month="10" data-dir="Закупки" data-lect="Бабунов|Емцова|Межникова" data-fmt="ochno|online" data-day="2026-10-21" data-past="1" data-q="актуальные изменения в 223-фз и 44-фз. разъяснения по сложным вопросам применения семинар для заказчиков и поставщиков бабунов с.в., емцова о.а., межникова ю.л. москва закупки москва онлайн" hidden>
+  <figure class="sf-ph"><img src="img/s-2.webp" alt="Москва" width="406" height="305" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>21-23 октября</span><span class="sf-st sf-st-past">Прошёл</span></p>
+    <h3>Актуальные изменения в 223-ФЗ и 44-ФЗ. Разъяснения по сложным вопросам применения</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Москва. Очно и онлайн</span></p>
+    <p class="sf-k">Семинар для заказчиков и поставщиков</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Бабунов С.В., Емцова О.А., Межникова Ю.Л.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/21-23okt-zakupki-msk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Кисловодск" data-month="10|11" data-dir="Бухгалтерия" data-lect="Затагина" data-fmt="ochno" data-day="2026-10-28" data-past="0" data-q="бухгалтерский учет и налогообложение в 2026 году: актуальные вопросы налоговой реформы практикум для бухгалтеров и финансовых служб затагина в.в. кисловодск бухгалтерия кисловодск">
+  <figure class="sf-ph"><img src="img/s-3.webp" alt="Кисловодск" width="640" height="480" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>28 октября - 1 ноября</span><span class="sf-st sf-st-now">Идёт сейчас</span></p>
+    <h3>Бухгалтерский учет и налогообложение в 2026 году: актуальные вопросы налоговой реформы</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Кисловодск. Очное участие</span></p>
+    <p class="sf-k">Практикум для бухгалтеров и финансовых служб</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Затагина В.В.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/28okt-1nov-buh-kislovodsk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Кисловодск|Онлайн" data-month="11" data-dir="Налоги" data-lect="Кузьминых" data-fmt="ochno|online" data-day="2026-11-01" data-past="0" data-q="антидробление, безразрывный ндс. развиваем бизнес в условиях кризиса и донастройки налоговой системы семинар для руководителей бизнеса и финансовых служб кузьминых а.е. кисловодск налоги кисловодск онлайн">
+  <figure class="sf-ph"><img src="img/s-4.webp" alt="Кисловодск" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>1-5 ноября</span></p>
+    <h3>Антидробление, безразрывный НДС. Развиваем бизнес в условиях кризиса и донастройки налоговой системы</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Кисловодск. Очно и онлайн</span></p>
+    <p class="sf-k">Семинар для руководителей бизнеса и финансовых служб</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Кузьминых А.Е.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/1-5nov-nalogi-kislovodsk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Санкт-Петербург|Онлайн" data-month="11" data-dir="Закупки" data-lect="Бабунов" data-fmt="ochno|online" data-day="2026-11-18" data-past="0" data-q="нововведения в сфере регулирования 44-фз и 223-фз семинар для заказчиков и поставщиков бабунов с.в. санкт-петербург закупки санкт-петербург онлайн">
+  <figure class="sf-ph"><img src="img/s-5.webp" alt="Санкт-Петербург" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>18-20 ноября</span></p>
+    <h3>Нововведения в сфере регулирования 44-ФЗ и 223-ФЗ</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Санкт-Петербург. Очно и онлайн</span></p>
+    <p class="sf-k">Семинар для заказчиков и поставщиков</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Бабунов С.В.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/18-20nov-zakupki-spb">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Москва|Онлайн" data-month="11" data-dir="Налоги" data-lect="Ряховский|Кузьминых" data-fmt="ochno|online" data-day="2026-11-19" data-past="0" data-q="антидробление и безразрывный ндс. налоговые проверки и споры: от допроверочной стадии до рассмотрения материалов семинар для руководителей бизнеса и финансовых служб ряховский д.и., кузьминых а.е. москва налоги москва онлайн">
+  <figure class="sf-ph"><img src="img/s-6.webp" alt="Москва" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>19-20 ноября</span></p>
+    <h3>Антидробление и безразрывный НДС. Налоговые проверки и споры: от допроверочной стадии до рассмотрения материалов</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Москва. Очное и онлайн-участие</span></p>
+    <p class="sf-k">Семинар для руководителей бизнеса и финансовых служб</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Ряховский Д.И., Кузьминых А.Е.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/19-20nov-nalogi-msk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Москва|Онлайн" data-month="11" data-dir="Бухгалтерия" data-lect="Самкова|Воробьева|Джаарбеков|Затагина" data-fmt="ochno|online" data-day="2026-11-24" data-past="0" data-q="практическая конференция. налоговый и бухгалтерский навигатор-2027. экспертный анализ практикум для бухгалтерии и финансовых служб самкова н.а., воробьева е.в., джаарбеков с.м., затагина в.а. москва бухгалтерия москва онлайн">
+  <figure class="sf-ph"><img src="img/s-7.webp" alt="Москва" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>24-27 ноября</span></p>
+    <h3>Практическая конференция. Налоговый и бухгалтерский навигатор-2027. Экспертный анализ</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Москва. Очно и онлайн</span></p>
+    <p class="sf-k">Практикум для бухгалтерии и финансовых служб</p>
+    <p class="sf-l"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Самкова Н.А., Воробьева Е.В., Джаарбеков С.М., Затагина В.А.</span></p>
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/24-27nov-buhkonf-msk">Подробнее и запись</a>
+  </div>
+</article>
+<article class="sf-card" data-sf-card data-city="Москва|Онлайн" data-month="11|12" data-dir="Гособоронзаказ" data-lect="" data-fmt="ochno|online" data-day="2026-11-30" data-past="0" data-q="применение новых требований в работе с гособоронзаказом при формировании цен, ведении раздельного учета и казначейском сопровождении оперативный консультационный семинар  москва гособоронзаказ москва онлайн">
+  <figure class="sf-ph"><img src="img/s-8.webp" alt="Москва" width="720" height="540" loading="lazy" decoding="async"></figure>
+  <div class="sf-body">
+    <p class="sf-when"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>31 ноября - 1 декабря</span></p>
+    <h3>Применение новых требований в работе с Гособоронзаказом при формировании цен, ведении раздельного учёта и казначейском сопровождении</h3>
+    <p class="sf-pl"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Москва. Очное или онлайн-участие</span></p>
+    <p class="sf-k">Оперативный консультационный семинар</p>
+    
+    <a class="sf-btn sf-btn-p" href="https://center-fks.ru/31nov-01dec-goz-msk">Подробнее и запись</a>
+  </div>
+</article>
+</div>
+<div class="sf-empty" data-sf-empty hidden>
+  <p class="sf-empty-t">Ничего не нашлось</p>
+  <p>Под выбранные условия семинаров нет. Подберём программу по телефону <a href="tel:+74959438323">+7 (495) 943-83-23</a></p>
+  <button type="button" class="sf-btn sf-btn-p" data-sf-reset data-keep>Сбросить фильтр</button>
+</div>
+<div class="sf-more"><button type="button" class="sf-btn sf-btn-o" data-sf-past>Показать прошедшие (2)</button></div>
+</section>
+<script>(function(){
+  var root=document.getElementById('sf7'); if(!root||root.sf) return;
+  var $$=function(s){return [].slice.call(root.querySelectorAll(s));};
+  var cards=$$('[data-sf-card]'), KEYS=['dir','city','month','lect','fmt','q','day'];
+  var st={dir:'',city:'',month:'',lect:'',fmt:'',q:'',day:'',past:false};
+  var limit=+(root.getAttribute('data-sf-limit')||0), pre=[], post=[];
+  function has(list,v){return !v||(list||'').split('|').indexOf(v)>=0;}
+  function norm(s){return String(s||'').toLowerCase().replace(/ё/g,'е').trim();}
+  function ok(c,s){var d=c.dataset;
+    if(!s.past&&d.past==='1') return false;
+    if(s.dir&&d.dir!==s.dir) return false;
+    if(!has(d.city,s.city)||!has(d.month,s.month)||!has(d.lect,s.lect)||!has(d.fmt,s.fmt)) return false;
+    if(s.day&&d.day!==s.day) return false;
+    if(s.q){var w=norm(s.q).split(/\s+/);for(var i=0;i<w.length;i++){if(w[i]&&d.q.indexOf(w[i])<0) return false;}}
+    return true;}
+  function count(k,v){var s={},x,n=0;for(x in st) s[x]=st[x];if(k) s[k]=v;cards.forEach(function(c){if(ok(c,s)) n++;});return n;}
+  function plural(n){var a=n%10,b=n%100;return n+' '+(a===1&&b!==11?'семинар':(a>=2&&a<=4&&(b<12||b>14))?'семинара':'семинаров');}
+  function active(keys){return (keys||KEYS).filter(function(k){return !!st[k];}).length;}
+  function render(){
+    pre.forEach(function(f){f();});
+    var n=0,shown=0,idle=!active()&&!st.past;
+    cards.forEach(function(c){var y=ok(c,st);if(y){n++;if(limit&&idle&&shown>=limit) y=false;else shown++;}c.hidden=!y;});
+    $$('[data-sf-count]').forEach(function(el){
+      var t=(idle&&el.dataset.idle)||el.dataset.tpl||'Найдено: {n}';
+      el.textContent=shown?t.replace('{n}',plural(shown)):(el.dataset.zero||'Найдено: 0 семинаров');});
+    $$('[data-sf-empty]').forEach(function(el){el.hidden=n>0;});
+    $$('[data-sf-reset]').forEach(function(el){if(!el.hasAttribute('data-keep')) el.hidden=idle||(n===0&&!el.closest('.f5-sh-foot'));});
+    $$('[data-sf-active-n]').forEach(function(el){var a=active(el.getAttribute('data-sf-active-n').split(','));el.textContent=a;el.hidden=!a;});
+    $$('[data-k][data-v]').forEach(function(el){
+      var k=el.dataset.k,v=el.dataset.v,on=st[k]===v,c=count(k,v),ce=el.querySelector('[data-c]');
+      el.classList.toggle('on',on);el.setAttribute('aria-pressed',on?'true':'false');
+      if(ce) ce.textContent=c;
+      if(v!==''){var z=c===0&&!on;el.disabled=z;if(el.hasAttribute('data-hide0')) el.hidden=z;}});
+    $$('select[data-k]').forEach(function(sel){
+      var k=sel.dataset.k;
+      [].forEach.call(sel.options,function(o){if(!o.value) return;var c=count(k,o.value);
+        o.disabled=c===0&&st[k]!==o.value;if(!sel.hasAttribute('data-nocount')) o.textContent=o.dataset.l+' ('+c+')';});
+      sel.value=st[k];
+      var pk=sel.closest('[data-pk]');
+      if(pk){var o=sel.options[sel.selectedIndex];pk.classList.toggle('on',!!st[k]);
+        pk.querySelector('[data-pk-t]').textContent=st[k]&&o?(o.dataset.d||o.dataset.l):sel.dataset.ph;}});
+    $$('input[data-k]').forEach(function(i){if(i.value!==st[i.dataset.k]) i.value=st[i.dataset.k];});
+    $$('[data-sf-past]').forEach(function(b){b.textContent=st.past?'Скрыть прошедшие':b.dataset.label;});
+    $$('[data-sf-show]').forEach(function(el){var p=el.getAttribute('data-sf-show').split('=');el.hidden=st[p[0]]!==p[1];});
+    post.forEach(function(f){f(n,shown);});
+  }
+  function set(k,v){st[k]=v;render();}
+  function reset(){KEYS.forEach(function(k){st[k]='';});render();}
+  $$('[data-sf-past]').forEach(function(b){b.dataset.label=b.textContent;});
+  root.addEventListener('click',function(ev){
+    var t=ev.target.closest('[data-k][data-v],[data-sf-reset],[data-sf-past],[data-sf-open]');
+    if(!t||!root.contains(t)) return;
+    if(t.hasAttribute('data-sf-reset')) return reset();
+    if(t.hasAttribute('data-sf-past')){st.past=!st.past;return render();}
+    if(t.hasAttribute('data-sf-open')){var p=root.querySelector(t.getAttribute('data-sf-open')),o=p.hidden;
+      p.hidden=!o;t.setAttribute('aria-expanded',o?'true':'false');t.classList.toggle('on',o);return;}
+    if(t.disabled) return;
+    var k=t.dataset.k,v=t.dataset.v;if(t.hasAttribute('data-toggle')&&st[k]===v) v='';set(k,v);});
+  root.addEventListener('change',function(ev){var s=ev.target;if(s.matches('select[data-k]')) set(s.dataset.k,s.value);});
+  root.addEventListener('input',function(ev){var s=ev.target;if(s.matches('input[data-k]')){st[s.dataset.k]=s.value;render();}});
+  root.sf={st:st,set:set,reset:reset,render:render,count:count,pre:pre,post:post};
+  pre.push(function(){if(st.fmt!=='ochno'&&st.city) st.city='';});
+  render();
+})();</script>
