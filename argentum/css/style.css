@@ -203,6 +203,7 @@ input:focus,textarea:focus,.sel:focus{outline:2px solid var(--blue);outline-offs
 .lic{margin-top:24px;font-size:var(--t-small);color:var(--muted)}
 .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
 .gal .ph{border-radius:20px}
+.gal-h{margin-top:56px}.gal-h+.gal{margin-top:24px}
 
 /* корпоративное */
 .corp{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;border:1px solid var(--line);border-radius:20px;padding:48px}
@@ -230,12 +231,12 @@ input:focus,textarea:focus,.sel:focus{outline:2px solid var(--blue);outline-offs
 .cform .btn{width:100%}
 
 /* подвал: три ровные колонки */
-.ftr{background:var(--ink);color:#fff;padding-block:56px 40px}
+.ftr{background:var(--ftr-bg,var(--ink));color:#fff;padding-block:56px 40px;font-weight:var(--ftr-w,400)}
 .ftr-in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;align-items:start}
 .ftr-in>div{display:grid;gap:12px;align-content:start}
 .ftr a{color:#fff;text-decoration:none}
 .ftr a:hover{text-decoration:underline}
-.ftr-brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.ftr-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:var(--t-body)}
 .ftr-brand img{height:48px;width:auto}
 .ftr-h{font-weight:800;color:#fff}
 .ftr p,.ftr li{font-size:var(--t-small);color:rgba(255,255,255,.82)}
