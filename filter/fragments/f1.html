@@ -1,4 +1,4 @@
-<!-- concept: вкладки направлений и три списка в одну строку | approach: главный выбор (тема) на виду, редкие параметры свёрнуты в списки справа | label: Вкладки, списки -->
+<!-- concept: формат, вкладки направлений и три списка | approach: сначала «Вживую или онлайн», тема вкладками на виду, редкие параметры свёрнуты в списки; город только для «Вживую» | label: Вкладки, списки -->
 <style>/* Ф-1: Вкладки, списки. Фрагмент самодостаточный: стили только внутри #sf1 */
 #sf1{--blue:#426bbd;--blue-d:#2f56a6;--blue-50:#f2f4f9;--blue-100:#e3e9f5;--ink:#121619;--text:#272c33;--muted:#59616e;--line:#dde3ee;
  --r:16px;--ctl:48px;--btn:52px;--fs:var(--t-body,18px);--fs-s:var(--t-small,16px);--h2:var(--t-h2,40px);--h3:var(--t-h3,22px);
@@ -73,6 +73,17 @@
 }
 
 #sf1 .f1-row{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
+#sf1 .f1-left{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap}
+#sf1 .f1-seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;flex:none;height:var(--ctl)}
+#sf1 .f1-sg{height:auto;min-height:0;padding:0 18px;border:0;background:none;color:var(--ink);
+ font:600 var(--fs-s)/1 Inter,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+#sf1 .f1-sg+.f1-sg{border-left:1.5px solid var(--line)}
+#sf1 .f1-sg:hover{background:var(--blue-50)}
+#sf1 .f1-sg.on{background:var(--blue);color:#fff}
+#sf1 .f1-sg[disabled]{opacity:.4;cursor:default}
+#sf1 .sf-pk.is-off{opacity:.4;cursor:default}
+#sf1 .sf-pk.is-off:hover{border-color:var(--line)}
+#sf1 .sf-pk.is-off select{pointer-events:none;cursor:default}
 #sf1 .f1-tabs{display:flex;gap:6px;flex-wrap:wrap}
 #sf1 .f1-tab{height:var(--ctl);padding:0 18px;border-radius:12px;border:0;background:var(--blue-50);color:var(--ink);
  font:600 var(--fs-s)/1 Inter,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex:none}
@@ -83,6 +94,8 @@
 #sf1 .f1-pks .sf-pk{min-width:132px}
 @media (max-width:700px){
  #sf1 .f1-row{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+ #sf1 .f1-left{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+ #sf1 .f1-seg{display:grid;width:100%}
  #sf1 .f1-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
  #sf1 .f1-tabs::-webkit-scrollbar{display:none}
  #sf1 .f1-pks{display:flex;flex-wrap:wrap}
@@ -91,8 +104,11 @@
 <section class="sf" id="sf1" aria-labelledby="sf1-h">
 <div class="sf-head"><h2 id="sf1-h">Расписание семинаров</h2><a class="sf-link" href="https://center-fks.ru/raspisanie">Страница расписания<svg class="ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>
 <div class="f1-row">
+  <div class="f1-left">
+  <div class="f1-seg" role="group" aria-label="Формат"><button type="button" class="f1-sg" data-k="fmt" data-v="" aria-pressed="false"><span>Все</span></button><button type="button" class="f1-sg" data-k="fmt" data-v="ochno" aria-pressed="false"><span>Вживую</span></button><button type="button" class="f1-sg" data-k="fmt" data-v="online" aria-pressed="false"><span>Онлайн</span></button></div>
   <div class="f1-tabs" role="group" aria-label="Направление"><button type="button" class="f1-tab" data-k="dir" data-v="" aria-pressed="false"><span>Все</span></button><button type="button" class="f1-tab" data-k="dir" data-v="Закупки" aria-pressed="false"><span>Закупки</span></button><button type="button" class="f1-tab" data-k="dir" data-v="Гособоронзаказ" aria-pressed="false"><span>Гособоронзаказ</span></button><button type="button" class="f1-tab" data-k="dir" data-v="Бухгалтерия" aria-pressed="false"><span>Бухгалтерия</span></button><button type="button" class="f1-tab" data-k="dir" data-v="Налоги" aria-pressed="false"><span>Налоги</span></button></div>
-  <div class="f1-pks"><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Город</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="city" data-ph="Город" aria-label="Город"><option value="">Все города</option><option value="Москва" data-l="Москва" data-d="Москва">Москва</option><option value="Санкт-Петербург" data-l="Санкт-Петербург" data-d="Санкт-Петербург">Санкт-Петербург</option><option value="Кисловодск" data-l="Кисловодск" data-d="Кисловодск">Кисловодск</option><option value="Онлайн" data-l="Онлайн" data-d="Онлайн">Онлайн</option></select></label><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Месяц</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="month" data-ph="Месяц" aria-label="Месяц"><option value="">Все месяцы</option><option value="10" data-l="Октябрь" data-d="Октябрь">Октябрь</option><option value="11" data-l="Ноябрь" data-d="Ноябрь">Ноябрь</option><option value="12" data-l="Декабрь" data-d="Декабрь">Декабрь</option></select></label><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Лектор</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="lect" data-ph="Лектор" aria-label="Лектор"><option value="">Все лекторы</option><option value="Бабунов" data-l="Бабунов" data-d="Бабунов">Бабунов</option><option value="Воробьева" data-l="Воробьева" data-d="Воробьева">Воробьева</option><option value="Джаарбеков" data-l="Джаарбеков" data-d="Джаарбеков">Джаарбеков</option><option value="Емцова" data-l="Емцова" data-d="Емцова">Емцова</option><option value="Затагина" data-l="Затагина" data-d="Затагина">Затагина</option><option value="Кузьминых" data-l="Кузьминых" data-d="Кузьминых">Кузьминых</option><option value="Межникова" data-l="Межникова" data-d="Межникова">Межникова</option><option value="Ряховский" data-l="Ряховский" data-d="Ряховский">Ряховский</option><option value="Самкова" data-l="Самкова" data-d="Самкова">Самкова</option></select></label></div>
+  </div>
+  <div class="f1-pks"><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Город</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="city" data-ph="Город" aria-label="Город"><option value="">Все города</option><option value="Москва" data-l="Москва" data-d="Москва">Москва</option><option value="Санкт-Петербург" data-l="Санкт-Петербург" data-d="Санкт-Петербург">Санкт-Петербург</option><option value="Кисловодск" data-l="Кисловодск" data-d="Кисловодск">Кисловодск</option></select></label><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Месяц</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="month" data-ph="Месяц" aria-label="Месяц"><option value="">Все месяцы</option><option value="10" data-l="Октябрь" data-d="Октябрь">Октябрь</option><option value="11" data-l="Ноябрь" data-d="Ноябрь">Ноябрь</option><option value="12" data-l="Декабрь" data-d="Декабрь">Декабрь</option></select></label><label class="sf-pk" data-pk><span class="sf-pk-t" data-pk-t>Лектор</span><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select data-k="lect" data-ph="Лектор" aria-label="Лектор"><option value="">Все лекторы</option><option value="Бабунов" data-l="Бабунов" data-d="Бабунов">Бабунов</option><option value="Воробьева" data-l="Воробьева" data-d="Воробьева">Воробьева</option><option value="Джаарбеков" data-l="Джаарбеков" data-d="Джаарбеков">Джаарбеков</option><option value="Емцова" data-l="Емцова" data-d="Емцова">Емцова</option><option value="Затагина" data-l="Затагина" data-d="Затагина">Затагина</option><option value="Кузьминых" data-l="Кузьминых" data-d="Кузьминых">Кузьминых</option><option value="Межникова" data-l="Межникова" data-d="Межникова">Межникова</option><option value="Ряховский" data-l="Ряховский" data-d="Ряховский">Ряховский</option><option value="Самкова" data-l="Самкова" data-d="Самкова">Самкова</option></select></label></div>
 </div>
 <div class="sf-bar"><p class="sf-count" data-sf-count data-tpl="Найдено: {n}" aria-live="polite">Найдено: 6 семинаров</p><button type="button" class="sf-reset" data-sf-reset hidden><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Сбросить</span></button></div>
 <div class="sf-grid">
@@ -253,6 +269,8 @@
   root.addEventListener('change',function(ev){var s=ev.target;if(s.matches('select[data-k]')) set(s.dataset.k,s.value);});
   root.addEventListener('input',function(ev){var s=ev.target;if(s.matches('input[data-k]')){st[s.dataset.k]=s.value;render();}});
   root.sf={st:st,set:set,reset:reset,render:render,count:count,pre:pre,post:post};
-  
+  pre.push(function(){if(st.fmt==='online'&&st.city) st.city='';});
+  var csel=root.querySelector('select[data-k="city"]');
+  post.push(function(){var off=st.fmt==='online';csel.disabled=off;csel.closest('[data-pk]').classList.toggle('is-off',off);});
   render();
 })();</script>
