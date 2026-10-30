@@ -455,7 +455,7 @@ input.err{border-color:#b45309;outline:2px solid #fde68a}
 .cform .card-foot{margin-top:0;padding-top:0}
 .cform .btn{width:auto;justify-self:start;padding:0 40px}
 /* ФКС: синяя полоса с живым фото справа */
-.hb-in{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:56px}
+.hb-in:has(.hb-ph){grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:56px}
 .hb-t{display:grid;gap:28px;justify-items:start}
 .hb-ph{border-radius:20px;overflow:hidden;margin:0}
 .hb-ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
