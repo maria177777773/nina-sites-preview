@@ -52,6 +52,7 @@
     inp.addEventListener('focus', function () { if (!inp.value) inp.value = '+7 ('; });
     inp.addEventListener('blur', function () { if (inp.value === '+7 (') inp.value = ''; });
   });
+  $$('input[data-inn]').forEach(function (inp) { inp.addEventListener('input', function () { inp.value = inp.value.replace(/\D/g, '').slice(0, 12); inp.classList.remove('err'); inp.removeAttribute('aria-invalid'); }); });
   $$('form[data-form]').forEach(function (fm) {
     fm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -59,8 +60,12 @@
       $$('input[data-phone]', fm).forEach(function (inp) {
         if (!phoneOk(digits(inp.value))) { bad = true; inp.classList.add('err'); inp.setAttribute('aria-invalid', 'true'); inp.focus(); }
       });
+      var innBad = false;
+      $$('input[data-inn]', fm).forEach(function (inp) {
+        if (!/^(\d{10}|\d{12})$/.test(inp.value.trim())) { bad = innBad = true; inp.classList.add('err'); inp.setAttribute('aria-invalid', 'true'); inp.focus(); }
+      });
       fm.dataset.state = bad ? 'bad' : 'ok';
-      if (msg) { msg.classList.toggle('bad', bad); msg.textContent = bad ? 'Проверьте номер: нужен мобильный или городской, 10 цифр после +7' : 'Спасибо! Перезвоним в течение 15 минут'; }
+      if (msg) { msg.classList.toggle('bad', bad); msg.textContent = bad ? (innBad ? 'Проверьте ИНН: 10 цифр у организации или 12 у ИП' : 'Проверьте номер: нужен мобильный или городской, 10 цифр после +7') : 'Спасибо! Перезвоним в течение 15 минут'; }
     });
   });
   // слайдер первого экрана: сам каждые 5 с, точки снизу, пауза при наведении и фокусе

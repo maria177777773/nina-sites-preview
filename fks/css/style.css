@@ -257,7 +257,7 @@ body.old main,body.old .hdr,body.old .ftr{visibility:hidden}
 
 /* ─── адаптив ─── */
 @media (max-width:1519px){.brand span{display:none}}
-@media (max-width:1360px){.hdr-ph span{display:none}.hdr-ph{width:var(--vp-h);justify-content:center;border:1.5px solid var(--hdr-line);border-radius:50%;padding:0}}
+@media (max-width:1700px){.hdr-ph span{display:none}.hdr-ph{width:var(--vp-h);justify-content:center;border:1.5px solid var(--hdr-line);border-radius:50%;padding:0}}
 @media (max-width:1180px){
   .nav,.hdr-r .hdr-ic,.hdr-r .btn-h,.hdr-r .hdr-ph{display:none}
   .hdr-r{margin-left:auto}
@@ -310,9 +310,9 @@ body.old main,body.old .hdr,body.old .ftr{visibility:hidden}
 .h2-left .h-price{color:#fff}
 .strip{padding-block:40px 0}
 .strip-t{font-size:var(--t-h3);font-weight:800;color:var(--ink);text-align:center}
-.hero-gold .h-text{background:var(--blue);border-radius:20px;padding:48px 40px}
-.hero-gold .h-text h1,.hero-gold .h-text .lead,.hero-gold .h-text .h-price,.hero-gold .mini-facts,.hero-gold .mini-facts b{color:var(--on)}
-.hero-gold .h-text .btn-p{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero-gold .h-text{background:var(--gold,var(--blue));border-radius:20px;padding:48px 40px}
+.hero-gold .h-text h1,.hero-gold .h-text .lead,.hero-gold .h-text .h-price,.hero-gold .h-text .h-inc,.hero-gold .mini-facts,.hero-gold .mini-facts b{color:var(--gold-on,var(--on))}
+.hero-gold .h-text .btn-p{background:var(--ink);border-color:var(--ink);color:#e2c27a}
 .hero-gold .h-text .btn-o{background:transparent;border-color:var(--ink);color:var(--ink)}
 .incs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .inc{background:#fff;border-radius:var(--r);padding:28px;display:grid;gap:12px;align-content:start}
@@ -480,3 +480,39 @@ input.err{border-color:#b45309;outline:2px solid #fde68a}
 .pg>h3{font-size:var(--t-sub);margin-bottom:12px}
 .sec-final{padding-bottom:36px}   /* + 104 у контактов = 140 */
 .hb-ph{justify-self:stretch;width:100%}.hb-ph img{height:auto}
+
+/* ─── 02.11: лектор и цена в «Ближайшем семинаре», «Что входит», форма по счёту ─── */
+.near-lect{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:600}
+.near-av{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none}
+.near-av+.near-av{margin-left:-24px;border:2px solid #fff}
+.near-pr{font-weight:800;color:var(--ink)}
+.h-inc{max-width:860px}
+.h-inc a{color:inherit;text-decoration:underline;font-weight:700}
+
+/* ─── 02.11: оплата по счёту организации, страница corp/ ─── */
+.inv{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px;margin-top:56px}
+.inv>div{display:grid;gap:12px}
+.inv h3{font-size:var(--t-h2)}
+.inv form{display:grid;gap:16px}
+.inv .ff{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.inv input{height:60px;font-size:var(--t-form)}
+.inv .btn{width:100%}
+.ch{background:var(--gold,var(--blue));color:var(--gold-on,#fff);padding-block:88px 80px}
+.ch-in{display:grid;gap:28px;justify-items:start}
+.ch h1{font-size:var(--t-hero);color:inherit;max-width:1000px}
+.ch .lead,.ch .h-price{color:inherit;max-width:860px}
+.ch-gold .btn-w{background:var(--ink);border-color:var(--ink);color:#e2c27a}
+.ch-gold .btn-wo{border-color:var(--ink);color:var(--ink);background:transparent}
+.corp-form{max-width:860px;margin:0 auto;border:1px solid var(--line)}
+.corp-form .ff{grid-template-columns:1fr 1fr}
+.corp-form .ff label:last-child{grid-column:1/-1}
+.corp-form input{height:60px;font-size:var(--t-form)}
+.lgrid .l-ph{flex:none}
+.more-wrap .btn{display:inline-flex}
+@media (max-width:1000px){.inv{grid-template-columns:1fr}}
+@media (max-width:700px){.inv{padding:24px 20px}.inv .ff,.corp-form .ff{grid-template-columns:1fr}.ch{padding-block:40px}.ch h1{font-size:var(--t-h1)}.ch .btns .btn{width:100%}}
+@media (max-width:1280px) and (min-width:1181px){.hdr-in{gap:12px}.nav a{padding:0 8px;font-size:17px}.hdr-r{gap:8px}.hdr-r .hdr-ic:not(.hdr-ph-ic){display:none}.btn-h{padding:0 14px}}
+.h2-left .h-inc,.hb .h-inc,.hp .h-inc{color:#fff}
+.corp .btn{white-space:normal;height:auto;min-height:var(--btn-h);padding:12px 24px;text-align:center}
+@media (max-width:1000px){.corp{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.corp .btn{justify-self:stretch}}
