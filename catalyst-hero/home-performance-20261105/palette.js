@@ -1,0 +1,9 @@
+/* Keep light neutral surfaces and yellow accents on the approved site palette. */
+(()=>{
+ const aliases={'#f8f8f8':'#f3f2ed','#f7f8f9':'#f3f2ed','#f2f4f9':'#f3f2ed','#f2f4f3':'#f3f2ed','#f4f5f7':'#f3f2ed','#f5f5f5':'#f3f2ed','#f6f6f6':'#f3f2ed','#f2f2f2':'#f3f2ed','#f3f3f3':'#f3f2ed','#f7f7f7':'#f3f2ed','#f4f4f4':'#f3f2ed','#f6f7f8':'#f3f2ed','#ffe34a':'#ffdf4a','#ffe34d':'#ffdf4a','#ffe448':'#ffdf4a','#ffe34f':'#ffdf4a'};
+ const normalize=value=>value.replace(/#[\da-f]{6}\b|rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/gi,token=>{const key=token.startsWith('#')?token.toLowerCase():'#'+token.match(/\d+/g).map(n=>(+n).toString(16).padStart(2,'0')).join('');return aliases[key]||token});
+ function rules(list){for(const rule of list){if(rule.cssRules)rules(rule.cssRules);if(!rule.style)continue;for(const prop of rule.style){const old=rule.style.getPropertyValue(prop),next=old.replace(/#(?:f2f4f[39]|f8f8f8|f7f8f9)\b|rgb\(\s*(?:242,\s*244,\s*(?:243|249)|248,\s*248,\s*248|247,\s*248,\s*249)\s*\)/gi,'#f3f2ed');if(old!==next)rule.style.setProperty(prop,next,rule.style.getPropertyPriority(prop));}for(const name of ['background','background-color','--section-paper','--paper','--milk','--section-yellow','--yellow']){const old=rule.style.getPropertyValue(name),next=normalize(old);if(old!==next)rule.style.setProperty(name,next,rule.style.getPropertyPriority(name));}}}
+ function sheet(s){if(s?.ownerNode?.hasAttribute('data-palette-ready'))return;try{rules(s.cssRules)}catch{}}
+ [...document.styleSheets].forEach(sheet);
+ new MutationObserver(records=>{for(const r of records)for(const el of r.addedNodes){if(el.nodeType!==1)continue;if(el.matches('style')){if(el.sheet)sheet(el.sheet)}else if(el.matches('link[rel="stylesheet"]')){el.addEventListener('load',()=>sheet(el.sheet),{once:true});}}}).observe(document.head,{childList:true});
+})();

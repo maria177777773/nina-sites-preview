@@ -1,0 +1,79 @@
+/* Homepage-only confirmation, reusing the callback form panels. */
+html body #contact-dialog.cf-success .cf-content{display:block!important;padding:0!important;background:transparent!important;gap:0!important;min-height:0!important}
+html body #contact-dialog.cf-success .cf-quiz-promise{margin:0;border-radius:24px!important}
+html body #contact-dialog.cf-success .cf-success-body{height:auto!important;min-height:0!important;border-radius:24px!important;overflow-wrap:anywhere}
+html body #contact-dialog.cf-success .cf-success-body .cf-intro{margin:0}
+html body #contact-dialog.cf-success .cf-success-body .cf-intro + .cf-intro{margin-top:14px}
+html body #telegram-invite #ti-form-status{white-space:pre-line}
+
+html body #contact-dialog.cf-success .cf-quiz-submit-panel{padding:24px 30px;background:#f3f2ed;border-radius:24px;margin-top:0}
+html body #contact-dialog.cf-success .cf-quiz-submit-panel .cf-primary{width:100%;background:#141414!important;color:#fff!important}
+html body #contact-dialog.cf-success .cf-quiz-submit-panel .cf-primary:is(:hover:where(:not(*)),:focus-visible){background:#ffdf4a!important;color:#141414!important;transform:none}@media (min-width:701px) and (hover:hover) and (pointer:fine){html body #contact-dialog.cf-success .cf-quiz-submit-panel .cf-primary:is(:hover,:focus-visible){background:#ffdf4a!important;color:#141414!important;transform:none}}
+@media(max-width:700px){html body #contact-dialog.cf-success .cf-quiz-submit-panel{padding:20px}}
+
+html body #scroll-offer{box-shadow:0 5px 12px #14141422!important}
+/* Stable mobile quiz: one scroll area, independent of browser toolbar changes. */
+@media(max-width:700px){
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success){height:calc(100svh - 64px)!important;height:min(calc(100svh - 64px),calc(var(--popup-viewport-height,100svh) - 64px))!important;max-height:calc(var(--popup-viewport-height,100svh) - 64px)!important;overflow:hidden!important;overflow-anchor:none;}
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success)>.popup-form-surface{height:100%!important;max-height:100%!important;overflow:hidden!important;padding:0!important;}
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success)>.popup-form-surface::after{display:none!important}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-content{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;gap:0!important;padding:0!important;overflow:hidden!important;}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-quiz-body{height:auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overscroll-behavior:contain;overflow-anchor:none;scroll-padding-block:20px;}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-quiz-submit-panel{position:static!important;flex:none!important;margin:0!important;}
+}
+
+@media(max-width:700px){
+html body #contact-dialog[data-external-close]{height:auto!important;max-height:calc(var(--popup-viewport-height,100dvh) - 64px)!important;overflow-y:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch;}
+html body #contact-dialog[data-external-close]>.popup-form-surface{height:auto!important;max-height:none!important;overflow:visible!important;padding-bottom:0!important;}
+html body #contact-dialog[data-external-close]>.popup-form-surface::after{display:none!important;content:none!important}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-content{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-quiz-body{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important}
+html body #contact-dialog.cf-cost-quiz .cf-quiz-submit-panel{position:static!important;inset:auto!important;margin:0!important}
+}
+@media(max-width:700px){
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success){height:auto!important;max-height:calc(var(--popup-viewport-height,100dvh) - 64px)!important;overflow-y:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch;}
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success)>.popup-form-surface{height:auto!important;max-height:none!important;overflow:visible!important;padding-bottom:0!important;}
+html body #contact-dialog.cf-cost-quiz[data-external-close]:not(.cf-success)>.popup-form-surface::after{display:none!important;content:none!important}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-content{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
+html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-quiz-body{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important}
+html body #contact-dialog.cf-cost-quiz .cf-quiz-submit-panel{position:static!important;inset:auto!important;margin:0!important}
+}
+
+html body .search-hits-slider .search-hits-pagination button[aria-current] span{position:relative;overflow:hidden;background:#f3f2ed!important}
+html body .search-hits-slider .search-hits-pagination button[aria-current] span::after{content:"";display:block;height:100%;width:100%;background:#141414;border-radius:inherit;transform-origin:left;transform:scaleX(var(--hit-fill,0))!important}
+@media(max-width:700px){
+html body #contact-dialog.cf-catalog-banner[data-external-close]{inset:auto 0 0!important;margin:0!important;padding:0!important;min-height:0!important;background:#0aba59!important}
+html body #contact-dialog.cf-catalog-banner[data-external-close]>.popup-form-surface{margin:0!important;padding:0!important;background:#0aba59!important}
+html body #contact-dialog[data-external-close]:not(.cf-cost-quiz):not(.cf-catalog-banner):not(.cf-callback):not(.cf-offers):not(:has(.cf-catalog-body))>.popup-form-surface{padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))!important}
+}
+
+@media(max-width:700px){
+html body :is(#contact-dialog,#telegram-invite,#brief,#offers-preview)[data-external-close][open]{bottom:var(--popup-viewport-bottom,0px)!important;max-height:calc(min(100dvh,var(--popup-viewport-height,100dvh)) - 64px)!important;box-sizing:border-box;overflow-y:auto!important}
+html body #contact-dialog.cf-success .cf-quiz-submit-panel{border-radius:24px 24px 0 0!important}
+}
+
+@media(max-width:700px){
+html body #contact-dialog[open][data-external-close]:has(.cf-catalog-body){inset:auto 0 0!important;padding:0!important;margin:0!important;height:auto!important;min-height:0!important;border:0!important}
+html body #contact-dialog[open][data-external-close]:has(.cf-catalog-body)>.popup-form-surface{padding:0!important;margin:0!important;height:auto!important;min-height:0!important;max-height:none!important}
+html body #contact-dialog[open][data-external-close]:has(.cf-catalog-body) .cf-content{margin-bottom:0!important}
+}
+
+@media(max-width:700px){html body #contact-dialog[open][data-external-close]:has(.cf-catalog-body):focus-within:has(input:not([type=radio]):focus){bottom:var(--popup-viewport-bottom,0px)!important}}
+
+@media(max-width:700px){
+html body #contact-dialog.cf-cost-quiz .cf-quiz-submit-panel[hidden]{display:none!important}
+html body #contact-dialog.cf-cost-quiz .cf-quiz-body:has(#cf-quiz-form){border-radius:24px 24px 0 0!important}
+}
+
+html body #contact-dialog.cf-success #cf-success-close{display:block;width:100%;margin:20px 0 0;background:#141414;color:#fff}
+@media(max-width:700px){html body #contact-dialog.cf-success .cf-success-body{border-radius:24px 24px 0 0!important}}
+
+/* Desktop brief: scroll the complete form, never the question panel alone. */
+@media(min-width:701px){
+ html body #contact-dialog.cf-cost-quiz:not(.cf-success) .cf-quiz-body{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;scrollbar-gutter:auto}
+}
+
+/* Desktop catalogue popup outer inset. */
+@media(min-width:701px){
+ html body #contact-dialog.cf-catalog-banner .cf-content{padding:48px!important}
+}

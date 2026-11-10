@@ -1,0 +1,7 @@
+/* Approved chat attention effect; the button itself stays still. */
+html body #chat-launcher{isolation:isolate;overflow:visible}
+html body #chat-launcher::before,html body #chat-launcher::after{content:"";position:absolute;inset:0;border:0;border-radius:inherit;background:#0aba59;pointer-events:none;z-index:-1;animation:catalyst-chat-wave 3.2s ease-out infinite}
+html body #chat-launcher::after{animation-delay:1.6s}
+html body #chat-launcher[aria-expanded="true"]::before,html body #chat-launcher[aria-expanded="true"]::after{animation:none;opacity:0}
+@keyframes catalyst-chat-wave{0%{transform:scale(1);opacity:.18}80%,100%{transform:scale(1.55);opacity:0}}
+@media(prefers-reduced-motion:reduce){html body #chat-launcher::before,html body #chat-launcher::after{animation:none;transform:none;opacity:0}}
