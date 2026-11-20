@@ -32,8 +32,12 @@
   .hdr nav a { color:var(--ink); text-decoration:none; font-size:16px; white-space:nowrap }
   .hdr .cta { color:#fff; padding:11px 20px; border-radius:10px; font-size:15px; font-weight:500; white-space:nowrap }
   .new { position:relative; font-weight:600 }
-  .new::after { content:'новое'; position:absolute; top:-17px; left:50%; transform:translateX(-50%); font-size:11px; background:#1e7b45; color:#fff; padding:1px 7px; border-radius:99px; font-weight:600 }
-  .new.box { outline:2px dashed #1e7b45; outline-offset:6px; border-radius:6px }
+  .live { background:#121619; color:#fff; border-radius:20px; padding:24px 28px; margin-top:28px }
+  .live h3 { margin:0 0 6px } .live p { margin:0 0 16px; color:#c9ced6 }
+  .live a { display:inline-block; background:#fff; color:#121619; border-radius:10px; padding:12px 18px; margin:0 10px 10px 0; text-decoration:none; font-weight:600 }
+  .ph { display:flex; align-items:center; gap:10px }
+  .flag { width:24px; height:16px; border-radius:3px; flex:none; background:linear-gradient(#fff 0 33.3%,#1c57a7 33.3% 66.6%,#d52b1e 66.6%); box-shadow:0 0 0 1px #d5d9e0 }
+  .ph .cc { color:#121619; font-weight:500 }
   .site { font-size:14px; color:var(--mute); margin:18px 0 0; font-weight:500 }
   .drop { position:relative }
   .drop-list { position:absolute; top:30px; left:-14px; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.12); padding:8px; z-index:2; min-width:200px }
@@ -84,6 +88,8 @@
 
 <h1>«Купить запись» на сайтах Нины</h1>
 <p class="lead">Где новый раздел встанет в меню трёх сайтов, как выглядит его страница и как Нина отмечает в панели, что семинар доступен в записи. Покупка идёт через заявку, как ты решила.</p>
+<div class="live"><h3>Вживую на копии сайта ФКС-Центра</h3><p>Настоящая главная, в меню добавлен новый пункт. Наведи мышь на «Расписание» во втором варианте. Заявки с копии не отправляются.</p>
+<a href="fks/v1/">Вариант 1: пункт «Записи»</a><a href="fks/v2/">Вариант 2: список под «Расписание»</a><a href="fks/zapisi/?v=2">Страница «Семинары в записи»</a></div>
 <div class="note"><b>Пункта «Услуги» в меню сейчас нет ни на одном из трёх сайтов.</b> Меню такие: ФКС: Расписание, Лекторы, О нас, Отзывы, Контакты. ЕЦПК: Семинары, Курсы, Отзывы, Лекторы, Контакты. Аргентум: Расписание, Лекторы, Отзывы, О нас, Контакты. Поэтому варианты ниже ставят записи рядом с расписанием: человек ищет их там же, где семинары.</div>
 
 <h2>1. Место в меню: три варианта</h2>
@@ -93,11 +99,11 @@
   <p class="why">Вывод: самый заметный вариант, человек видит записи с первого экрана любой страницы.</p>
   <div class="pm"><div class="p"><b>Плюсы</b>Видно сразу, в один клик. Одно короткое слово влезает в шапку и в мобильное меню.</div><div class="m"><b>Минусы</b>Робот правит шапку в 4 местах на каждом сайте: главная, страницы программ, расписание, мобильное меню. Перед правкой он делает копию.</div></div>
   <p class="site">ФКС-Центр</p>
-  <div class="hdr"><span class="logo" style="color:#426bbd">ФКС ЦЕНТР</span><nav><a>Расписание</a><a class="new box">Записи</a><a>Лекторы</a><a>О нас</a><a>Отзывы</a><a>Контакты</a></nav><span class="cta" style="background:#426bbd">Консультация</span></div>
+  <div class="hdr"><span class="logo" style="color:#426bbd">ФКС ЦЕНТР</span><nav><a>Расписание</a><a style="font-weight:600">Записи</a><a>Лекторы</a><a>О нас</a><a>Отзывы</a><a>Контакты</a></nav><span class="cta" style="background:#426bbd">Консультация</span></div>
   <p class="site">ЕЦПК</p>
-  <div class="hdr"><span class="logo" style="color:#bf9735">ЕЦПК</span><nav><a>Семинары</a><a class="new box">Записи</a><a>Курсы</a><a>Отзывы</a><a>Лекторы</a><a>Контакты</a></nav><span class="cta" style="background:#bf9735;color:#121619">Регистрация на мероприятие</span></div>
+  <div class="hdr"><span class="logo" style="color:#bf9735">ЕЦПК</span><nav><a>Семинары</a><a style="font-weight:600">Записи</a><a>Курсы</a><a>Отзывы</a><a>Лекторы</a><a>Контакты</a></nav><span class="cta" style="background:#bf9735;color:#121619">Регистрация на мероприятие</span></div>
   <p class="site">Аргентум</p>
-  <div class="hdr"><span class="logo" style="color:#3257a1">АРГЕНТУМ</span><nav><a>Расписание</a><a class="new box">Записи</a><a>Лекторы</a><a>Отзывы</a><a>О нас</a><a>Контакты</a></nav><span class="cta" style="background:#3257a1">Оставить заявку</span></div>
+  <div class="hdr"><span class="logo" style="color:#3257a1">АРГЕНТУМ</span><nav><a>Расписание</a><a style="font-weight:600">Записи</a><a>Лекторы</a><a>Отзывы</a><a>О нас</a><a>Контакты</a></nav><span class="cta" style="background:#3257a1">Оставить заявку</span></div>
 </div>
 
 <div class="var">
@@ -142,7 +148,8 @@
     <div class="f">
       <label>Название семинара</label><div class="in filled">Нововведения в сфере регулирования 44-ФЗ и 223-ФЗ</div>
       <label>Формат обучения</label><div class="in filled">Запись</div>
-      <label>Имя и телефон</label><div class="in empty">Иван, +7 …</div>
+      <label>Имя</label><div class="in empty">Иван Петров</div>
+      <label>Телефон</label><div class="in ph"><span class="flag"></span><span class="cc">+7</span><span>(925) 123-45-67</span></div>
       <label>Почта для счёта</label><div class="in empty">mail@company.ru</div>
       <div class="send">Отправить заявку</div>
     </div>
