@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>«Купить запись»: место в меню и раздел</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#121619; --mute:#5b6470; --line:#e4e6ea; }
+  * { box-sizing:border-box }
+  body { margin:0; font-family:'Inter',Arial,sans-serif; color:var(--ink); background:#f4f5f7; font-size:17px; line-height:1.5 }
+  .wrap { max-width:1240px; margin:0 auto; padding:40px 24px 80px }
+  h1 { font-size:40px; line-height:1.15; margin:0 0 12px }
+  h2 { font-size:30px; margin:64px 0 8px }
+  h3 { font-size:22px; margin:0 0 6px }
+  .lead { font-size:20px; color:var(--mute); max-width:860px; margin:0 }
+  .note { background:#fff8e1; border:1px solid #f0dc9c; border-radius:14px; padding:16px 20px; margin:24px 0 0; max-width:860px }
+  .var { background:#fff; border-radius:20px; padding:28px; margin-top:24px; box-shadow:0 1px 3px rgba(0,0,0,.06) }
+  .var-head { display:flex; gap:14px; align-items:baseline; flex-wrap:wrap; margin-bottom:6px }
+  .num { display:inline-flex; width:44px; height:44px; border-radius:50%; background:#121619; color:#fff; font-weight:700; font-size:20px; align-items:center; justify-content:center; flex:none }
+  .rec { background:#1e7b45; color:#fff; font-size:14px; font-weight:600; padding:4px 12px; border-radius:99px }
+  .why { color:var(--mute); margin:4px 0 18px }
+  .pm { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:0 0 18px }
+  .pm div { border-radius:12px; padding:14px 16px; font-size:16px }
+  .pm .p { background:#eef8f1 } .pm .m { background:#fdf0ef }
+  .pm b { display:block; margin-bottom:4px }
+  /* шапки сайтов */
+  .hdr { border:1px solid var(--line); border-radius:14px; background:#fff; display:flex; align-items:center; gap:30px; padding:18px 26px; margin-top:12px; flex-wrap:wrap; position:relative }
+  .logo { font-weight:700; font-size:18px; min-width:150px }
+  .hdr nav { display:flex; gap:26px; align-items:center; flex-wrap:wrap; flex:1 }
+  .hdr nav a { color:var(--ink); text-decoration:none; font-size:16px; white-space:nowrap }
+  .hdr .cta { color:#fff; padding:11px 20px; border-radius:10px; font-size:15px; font-weight:500; white-space:nowrap }
+  .new { position:relative; font-weight:600 }
+  .new::after { content:'новое'; position:absolute; top:-17px; left:50%; transform:translateX(-50%); font-size:11px; background:#1e7b45; color:#fff; padding:1px 7px; border-radius:99px; font-weight:600 }
+  .new.box { outline:2px dashed #1e7b45; outline-offset:6px; border-radius:6px }
+  .site { font-size:14px; color:var(--mute); margin:18px 0 0; font-weight:500 }
+  .drop { position:relative }
+  .drop-list { position:absolute; top:30px; left:-14px; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.12); padding:8px; z-index:2; min-width:200px }
+  .drop-list a { display:block; padding:9px 12px; border-radius:8px }
+  .drop-list a.on { background:#eef8f1; font-weight:600 }
+  .sw { display:inline-flex; background:#eef1f6; border-radius:12px; padding:5px; gap:4px; margin-top:16px }
+  .sw span { padding:10px 20px; border-radius:9px; font-size:16px }
+  .sw .on { background:#fff; font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,.1) }
+  /* страница раздела */
+  .page { background:#fff; border-radius:20px; padding:40px; margin-top:24px; --acc:#426bbd }
+  .page h1 { font-size:36px }
+  .chips { display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 28px }
+  .chips span { border:1px solid var(--line); border-radius:99px; padding:9px 18px; font-size:15px }
+  .chips .on { background:var(--acc); color:#fff; border-color:var(--acc) }
+  .ev { border:1px solid var(--line); border-radius:16px; padding:24px; display:grid; grid-template-columns:150px 1fr 220px; gap:24px; align-items:center; margin-top:14px }
+  .ev .d { color:var(--acc); font-weight:700; font-size:15px; line-height:1.3 }
+  .ev .d small { display:block; color:var(--mute); font-weight:400; margin-top:4px }
+  .tag { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); font-weight:600 }
+  .ev h4 { font-size:20px; margin:6px 0; line-height:1.3 }
+  .ev p { margin:0; color:var(--mute); font-size:15px }
+  .acts { display:flex; flex-direction:column; gap:10px }
+  .btn { display:block; text-align:center; padding:13px 16px; border-radius:10px; font-size:16px; font-weight:500; text-decoration:none }
+  .btn.pr { background:var(--acc); color:#fff }
+  .btn.sec { border:1.5px solid var(--acc); color:var(--acc) }
+  .price { font-size:20px; font-weight:700; text-align:center }
+  /* окно заявки */
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px }
+  .modal { background:#fff; border-radius:20px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,.06) }
+  .f label { display:block; font-size:15px; margin:14px 0 6px }
+  .f .in { border:1px solid #426bbd; border-radius:10px; padding:13px 14px; font-size:15px; background:#fff }
+  .f .in.filled { background:#f3f7ff }
+  .f .in.empty { color:#9aa1ab; border-color:#d5d9e0 }
+  .send { margin-top:20px; background:#426bbd; color:#fff; text-align:center; padding:14px; border-radius:10px; font-weight:600 }
+  /* панель */
+  .panel { background:#fff; border-radius:20px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,.06) }
+  .chk { display:flex; gap:14px; align-items:flex-start; border:2px solid #1e7b45; border-radius:14px; padding:18px; margin-top:16px; background:#f6fbf8 }
+  .box { width:26px; height:26px; border-radius:7px; background:#1e7b45; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; flex:none }
+  .chk b { display:block; font-size:18px }
+  .chk span { color:var(--mute); font-size:15px }
+  .sub { margin:14px 0 0 40px; display:grid; gap:10px }
+  .sub .in { border:1px solid #d5d9e0; border-radius:10px; padding:11px 14px; font-size:15px }
+  .flow { background:#121619; color:#fff; border-radius:16px; padding:22px 26px; font-family:ui-monospace,Menlo,monospace; font-size:15px; line-height:1.7; margin-top:24px; white-space:pre-wrap }
+  @media (max-width:900px) { .pm,.two { grid-template-columns:1fr } .ev { grid-template-columns:1fr } h1 { font-size:30px } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>«Купить запись» на сайтах Нины</h1>
+<p class="lead">Где новый раздел встанет в меню трёх сайтов, как выглядит его страница и как Нина отмечает в панели, что семинар доступен в записи. Покупка идёт через заявку, как ты решила.</p>
+<div class="note"><b>Пункта «Услуги» в меню сейчас нет ни на одном из трёх сайтов.</b> Меню такие: ФКС: Расписание, Лекторы, О нас, Отзывы, Контакты. ЕЦПК: Семинары, Курсы, Отзывы, Лекторы, Контакты. Аргентум: Расписание, Лекторы, Отзывы, О нас, Контакты. Поэтому варианты ниже ставят записи рядом с расписанием: человек ищет их там же, где семинары.</div>
+
+<h2>1. Место в меню: три варианта</h2>
+
+<div class="var">
+  <div class="var-head"><span class="num">1</span><h3>Отдельный пункт «Записи» сразу после расписания</h3><span class="rec">рекомендую</span></div>
+  <p class="why">Вывод: самый заметный вариант, человек видит записи с первого экрана любой страницы.</p>
+  <div class="pm"><div class="p"><b>Плюсы</b>Видно сразу, в один клик. Одно короткое слово влезает в шапку и в мобильное меню.</div><div class="m"><b>Минусы</b>Робот правит шапку в 4 местах на каждом сайте: главная, страницы программ, расписание, мобильное меню. Перед правкой он делает копию.</div></div>
+  <p class="site">ФКС-Центр</p>
+  <div class="hdr"><span class="logo" style="color:#426bbd">ФКС ЦЕНТР</span><nav><a>Расписание</a><a class="new box">Записи</a><a>Лекторы</a><a>О нас</a><a>Отзывы</a><a>Контакты</a></nav><span class="cta" style="background:#426bbd">Консультация</span></div>
+  <p class="site">ЕЦПК</p>
+  <div class="hdr"><span class="logo" style="color:#bf9735">ЕЦПК</span><nav><a>Семинары</a><a class="new box">Записи</a><a>Курсы</a><a>Отзывы</a><a>Лекторы</a><a>Контакты</a></nav><span class="cta" style="background:#bf9735;color:#121619">Регистрация на мероприятие</span></div>
+  <p class="site">Аргентум</p>
+  <div class="hdr"><span class="logo" style="color:#3257a1">АРГЕНТУМ</span><nav><a>Расписание</a><a class="new box">Записи</a><a>Лекторы</a><a>Отзывы</a><a>О нас</a><a>Контакты</a></nav><span class="cta" style="background:#3257a1">Оставить заявку</span></div>
+</div>
+
+<div class="var">
+  <div class="var-head"><span class="num">2</span><h3>Выпадающий список под «Расписание»</h3></div>
+  <p class="why">Вывод: шапка не растёт, но записи спрятаны за наведением мыши.</p>
+  <div class="pm"><div class="p"><b>Плюсы</b>Число пунктов в шапке прежнее. Логично: «Ближайшие» и «В записи» в одном месте.</div><div class="m"><b>Минусы</b>На телефоне наведения нет, нужен второй тап. Список в шапке Тильды делается кодом поверх блока: сложнее и хрупче варианта 1.</div></div>
+  <p class="site">ФКС-Центр, наведение на «Расписание»</p>
+  <div class="hdr" style="padding-bottom:110px"><span class="logo" style="color:#426bbd">ФКС ЦЕНТР</span><nav><span class="drop"><a style="font-weight:600">Расписание ▾</a><span class="drop-list"><a>Ближайшие семинары</a><a class="on">Семинары в записи</a></span></span><a>Лекторы</a><a>О нас</a><a>Отзывы</a><a>Контакты</a></nav><span class="cta" style="background:#426bbd">Консультация</span></div>
+</div>
+
+<div class="var">
+  <div class="var-head"><span class="num">3</span><h3>Без нового пункта: переключатель на странице расписания</h3></div>
+  <p class="why">Вывод: самый быстрый и безопасный, но записи найдёт только тот, кто уже открыл расписание.</p>
+  <div class="pm"><div class="p"><b>Плюсы</b>Шапки сайтов не трогаем совсем. Делается за день: та же страница, второй список.</div><div class="m"><b>Минусы</b>С главной до записей два клика. Отдельной ссылки «Записи» для писем и рекламы нет, только адрес с меткой.</div></div>
+  <p class="site">Страница «Расписание», сверху</p>
+  <div class="sw"><span>Ближайшие семинары</span><span class="on">В записи</span></div>
+</div>
+
+<h2>2. Страница «Семинары в записи»</h2>
+<p class="lead">По образцу страницы расписания: та же тема сайта и те же направления. Вместо дат пометка «запись», вместо «Оставить заявку» кнопка «Купить запись».</p>
+<div class="page">
+  <h1>Семинары и вебинары в записи</h1>
+  <p class="lead" style="font-size:18px">Смотрите в удобное время. Оставьте заявку, и мы пришлём счёт и доступ к записи.</p>
+  <div class="chips"><span class="on">Все направления</span><span>Закупки</span><span>Гособоронзаказ</span><span>Бухгалтерия и налоги</span></div>
+  <div class="ev">
+    <div class="d">Запись<small>18–20 ноября 2026</small></div>
+    <div><span class="tag">Закупки</span><h4>Нововведения в сфере регулирования 44-ФЗ и 223-ФЗ</h4><p>Лектор: Бабунов С.В. · 3 дня</p></div>
+    <div class="acts"><a class="btn sec">Программа</a><a class="btn pr">Купить запись</a></div>
+  </div>
+  <div class="ev">
+    <div class="d">Запись<small>19–20 ноября 2026</small></div>
+    <div><span class="tag">Бухгалтерия и налоги</span><h4>Антидробление и безразрывный НДС. Налоговые проверки и споры</h4><p>Лектор из программы семинара · 2 дня</p></div>
+    <div class="acts"><a class="btn sec">Программа</a><a class="btn pr">Купить запись</a></div>
+  </div>
+  <p style="color:var(--mute);font-size:14px;margin-top:18px">Названия взяты из текущего расписания для примера. Настоящий список пришлёт Нина.</p>
+</div>
+
+<div class="two">
+  <div class="modal">
+    <h3>Окно после «Купить запись»</h3>
+    <p class="why" style="margin-bottom:6px">Та же форма заявки сайта, что в расписании. Название и пометка «запись» вписаны сами, заявка приходит Нине обычным путём.</p>
+    <div class="f">
+      <label>Название семинара</label><div class="in filled">Нововведения в сфере регулирования 44-ФЗ и 223-ФЗ</div>
+      <label>Формат обучения</label><div class="in filled">Запись</div>
+      <label>Имя и телефон</label><div class="in empty">Иван, +7 …</div>
+      <label>Почта для счёта</label><div class="in empty">mail@company.ru</div>
+      <div class="send">Отправить заявку</div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Галочка в панели Нины</h3>
+    <p class="why" style="margin-bottom:0">В карточке программы при создании и в настройках страницы.</p>
+    <div class="chk"><span class="box">✓</span><div><b>Доступна в записи</b><span>Программа попадёт в раздел «Записи» на сайтах, где она опубликована</span></div></div>
+    <div class="sub">
+      <div class="in">Показывать в записи: <b>сразу после окончания семинара</b></div>
+      <div class="in" style="color:#9aa1ab">Цена записи, если отличается (необязательно)</div>
+    </div>
+    <p style="color:var(--mute);font-size:15px;margin-top:18px">Список Нины: она пишет помощнику «вот записи: …». Помощник отмечает галочки и показывает таблицу «Понял так». Сохраняется только после её «Да».</p>
+  </div>
+</div>
+
+<div class="flow">Нина ставит галочку  →  семинар закончился  →  он сам появляется в «Записях»
+                                                    ↓
+человек жмёт «Купить запись»  →  форма заявки с названием  →  заявка Нине  →  счёт и доступ (команда Нины)</div>
+
+</div>
+</body>
+</html>
